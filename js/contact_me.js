@@ -11,7 +11,7 @@ $(function() {
       var name = $("input#name").val();
       var email = $("input#email").val();
       var phone = $("input#phone").val();
-      var message = $("textarea#message").val();
+      var message = name + phone + $("textarea#message").val();
       var firstName = name; // For Success/Failure Message
       // Check for white space in name for Success/Fail message
       if (firstName.indexOf(' ') >= 0) {
@@ -20,13 +20,12 @@ $(function() {
       $this = $("#sendMessageButton");
       $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
       $.ajax({
-        url: "././mail/contact_me.php",
+        url: "https://formspree.io/myydqnbe",
         type: "POST",
         data: {
-          name: name,
+          name: message,
           phone: phone,
-          email: email,
-          message: message
+          _replyto: email
         },
         cache: false,
         success: function() {
